@@ -190,16 +190,23 @@ export default function Home() {
                 >
                     <span className="text-base sm:text-xl italic tracking-widest text-black/65">the wedding of</span>
                     <h1 className="text-4xl sm:text-5xl md:text-7xl mt-4 sm:mt-6">Rahul&nbsp;&nbsp;&nbsp;<span className="italic">&</span>&nbsp;&nbsp;&nbsp;Sandra</h1>
-                    <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
-                        {mounted ? (
-                            <>
-                                <CountdownUnit value={time.days} label="days" />
-                                <CountdownUnit value={time.hours} label="hours" />
-                                <CountdownUnit value={time.minutes} label="minutes" />
-                                <CountdownUnit value={time.seconds} label="seconds" />
-                            </>
-                        ) : null}
-                    </div>
+                    {mounted && Date.now() >= TARGET ? (
+                        <div className="my-8 sm:my-16 flex flex-col items-center text-center px-4">
+                            <p className="text-base sm:text-xl italic text-black/65">Married on 12<sup className="text-xs align-super">th</sup> July 2026 &middot; thank you for celebrating with us</p>
+                            <a href="https://www.youtube.com/watch?v=655m5Ohkpqw" target="_blank" className="mt-4 text-lg sm:text-2xl underline hover:text-black/65 transition-colors">Watch our wedding highlights</a>
+                        </div>
+                    ) : (
+                        <div className="my-8 sm:my-16 flex flex-row gap-4 sm:gap-10">
+                            {mounted ? (
+                                <>
+                                    <CountdownUnit value={time.days} label="days" />
+                                    <CountdownUnit value={time.hours} label="hours" />
+                                    <CountdownUnit value={time.minutes} label="minutes" />
+                                    <CountdownUnit value={time.seconds} label="seconds" />
+                                </>
+                            ) : null}
+                        </div>
+                    )}
                 </div>
             </main>
         </div>
